@@ -14,7 +14,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
   @Override
   public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config,
       CorsRegistry cors) {
-    HttpMethod[] theUnsupportedActions = {HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT};
+    HttpMethod[] theUnsupportedActions = {HttpMethod.DELETE};
 
     //disable HTTP methods for Order; PUT,POST,DELETE
     config.getExposureConfiguration()

@@ -13,12 +13,13 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Getter
 @Setter
 @Entity
 @ToString
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,15 @@ public class Order {
   private Double totalPrice;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+  @Exclude
   private List<OrderItem> orderItems;
+
+  public void setOrderItems(List<OrderItem> orderItems) {
+    this.orderItems = orderItems;
+  }
+
+  public List<OrderItem> getOrderItems() {
+    return orderItems;
+  }
 
 }
