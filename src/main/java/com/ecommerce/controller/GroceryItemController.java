@@ -27,20 +27,20 @@ public class GroceryItemController {
   }
 
   @PostMapping
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('USER')")
   public GroceryItem addItem(@RequestBody GroceryItem item) {
     return groceryItemService.addItem(item);
   }
 
 
   @PutMapping("/{id}")
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('USER')")
   public GroceryItem updateItem(@PathVariable Long id, @RequestBody GroceryItem item) {
     return groceryItemService.updateItem(id, item);
   }
 
   @DeleteMapping("/{id}")
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('USER')")
   public void deleteItem(@PathVariable Long id) {
     groceryItemService.deleteItem(id);
   }

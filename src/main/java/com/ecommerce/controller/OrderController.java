@@ -24,7 +24,7 @@ public class OrderController {
 
   @PostMapping("/{id}")
   @PreAuthorize("hasRole('ADMIN')")
-  public Order placeOrder(@PathVariable Long id,@RequestBody List<OrderItem> orderItems) {
+  public Order placeOrder(@PathVariable Long id, @RequestBody List<OrderItem> orderItems) {
     System.out.println("Received Order: " + orderItems);
     return orderService.placeOrder(id, orderItems);
   }
