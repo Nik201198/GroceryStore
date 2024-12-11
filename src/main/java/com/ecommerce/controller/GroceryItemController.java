@@ -4,6 +4,7 @@ import com.ecommerce.Service.GroceryItemService;
 import com.ecommerce.entity.GroceryItem;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,23 +22,25 @@ public class GroceryItemController {
 
   @GetMapping
   public List<GroceryItem> getItems() {
+    System.out.println("get call for groceryItems");
     return groceryItemService.getAllItems();
   }
 
   @PostMapping
-
+  @PreAuthorize("hasRole('ADMIN')")
   public GroceryItem addItem(@RequestBody GroceryItem item) {
     return groceryItemService.addItem(item);
   }
 
-  @PutMapping("/{id}")
 
+  @PutMapping("/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public GroceryItem updateItem(@PathVariable Long id, @RequestBody GroceryItem item) {
     return groceryItemService.updateItem(id, item);
   }
 
   @DeleteMapping("/{id}")
-
+  @PreAuthorize("hasRole('ADMIN')")
   public void deleteItem(@PathVariable Long id) {
     groceryItemService.deleteItem(id);
   }

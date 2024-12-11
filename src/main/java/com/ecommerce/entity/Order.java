@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,4 +45,11 @@ public class Order {
     return orderItems;
   }
 
+  public void addOrderItem(OrderItem item){
+    if(this.orderItems == null){
+      this.orderItems = new ArrayList<>();
+    }
+    this.orderItems.add(item);
+    item.setOrder(this);
+  }
 }
